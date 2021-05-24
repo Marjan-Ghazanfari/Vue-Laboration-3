@@ -12,7 +12,7 @@
             <button type="submit" class="btn btn-info btn-block">Submit</button>
           </div>
         </form>
-        <form class="ms-auto">
+        <form class="ms-4">
           <div class="mb-2">
             {{ post.title }}
           </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   data() {
@@ -38,10 +38,15 @@ export default {
   },
   methods: {
     async submitPost() {
-      // const result = await axios.post('https://us-central1-blog-webapi.cloudfunctions.net/api/posts/', Object.assign({}, this.post));
-      // console.log(result);
-      // this.post = {title: '', body: ''};
-      // this.$router.push({name: 'Previews'});
+      try {
+        const result = await axios.post('', Object.assign({}, this.post));
+        console.log(result);
+        this.post = {title: '', body: ''};
+        this.$router.push({name: 'Previews'});
+      }
+      catch {
+        console.log('error!!')
+      }
     }
   }
 }
